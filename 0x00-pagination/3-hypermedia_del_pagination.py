@@ -49,12 +49,12 @@ class Server:
         assert index < data_len
 
         start_index = max(0, index)  # Ensure index is non-negative
-        end_index = min(start_index + page_size, data_len)  # Ensure index within bounds
+        end_index = min(start_index + page_size, data_len)
         data_list = []
         idx = start_index
         while idx < end_index:
             if idx in self.indexed_dataset().keys():
-              data_list.append((idx, self.indexed_dataset()[idx]))
+                data_list.append((idx, self.indexed_dataset()[idx]))
             idx += 1
 
         data = dict(data_list)
