@@ -30,6 +30,9 @@ class Server:
         # Validate input type and value
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
+        data_size = len(self.dataset())
+        if page > data_size or page_size > data_size:
+            return []
 
         # get index range of page
         idx_range = index_range(page, page_size)
