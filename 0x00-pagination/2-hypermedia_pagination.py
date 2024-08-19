@@ -49,7 +49,7 @@ class Server:
         """
 
         dict = {
-            "page_size": page_size if page * page_size < len(self.dataset()) 
+            "page_size": page_size if page * page_size < len(self.dataset())
             else 0,
             "page": page,
             "data": self.get_page(page, page_size),
