@@ -8,10 +8,11 @@ from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
-  """return page start and end index"""
-  start_index = page_size * (page - 1)
-  end_index = page_size * page
-  return start_index, end_index
+    """return page start and end index"""
+    start_index: int = page_size * (page - 1)
+    end_index: int = page_size * page
+
+    return (start_index, end_index)
 
 
 class Server:
@@ -19,10 +20,8 @@ class Server:
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
-
     def __init__(self):
         self.__dataset = None
-
 
     def dataset(self) -> List[List]:
         """Cached dataset
@@ -34,7 +33,6 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         # Validate input type and value
