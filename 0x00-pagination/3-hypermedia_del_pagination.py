@@ -8,7 +8,7 @@ the dataset, the user does not miss items from dataset when changing page.
 
 import csv
 import math
-from typing import List
+from typing import List, Dict
 
 
 class Server:
@@ -45,13 +45,23 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """return dictionary of page properties"""
         # validate index range
-        assert 
-        dict = {
-            "index": ,
-            "next_index": ,
-            "page_size": page_size if page * page_size < len(self.dataset())
-                         else 0,
-            "data": self.get_page(page, page_size),
+        data_len = len(self.indexed_dataset())
+        assert index < data_len
+
+        start_index = max(0, index)  # Ensure index is non-negative
+        end_index = min(start_index + page_size, data_len)  # Ensure index within bounds
+        data_list = []
+        idx = start_index
+        while idx < end_index:
+            if idx in self.indexed_dataset().keys():
+              data_list.append((idx, self.indexed_dataset()[idx]))
+            idx += 1
+
+        data = dict(data_list)
+
+        return {
+            "index": start_index,
+            "next_index": end_index if end_index < data_len else None,
+            "page_size": len(data),
+            "data": data
         }
-        return dict
-    
