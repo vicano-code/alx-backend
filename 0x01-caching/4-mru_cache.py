@@ -36,12 +36,12 @@ class MRUCache(BaseCaching):
             # add item to cache and stack
             self.cache_data[key] = item
             self.stack.append(key)
-        else: # if key in cache
+        else:  # if key in cache
             # update value of existing key
             self.cache_data[key] = item
             # update key position in stack byt moving to start
             self.stack.remove(key)
-            self.stack.insert(0, key)                
+            self.stack.insert(0, key)
 
     def get(self, key):
         """get item from cache"""

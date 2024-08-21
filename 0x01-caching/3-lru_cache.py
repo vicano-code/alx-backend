@@ -35,12 +35,12 @@ class LRUCache(BaseCaching):
             # add item to cache and queue
             self.cache_data[key] = item
             self.queue.append((key))
-        else: # if key in cache
+        else:  # if key in cache
             # update value of existing key
             self.cache_data[key] = item
             # update key position in queue by moving to end
             self.queue.remove(key)
-            self.queue.append(key)               
+            self.queue.append(key)
 
     def get(self, key):
         """get item from cache"""

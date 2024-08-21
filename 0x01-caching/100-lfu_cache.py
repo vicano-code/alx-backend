@@ -42,11 +42,11 @@ class LFUCache(BaseCaching):
             # add item to cache and freq
             self.cache_data[key] = item
             self.freq[key] = 1
-        else: # if key in cache
+        else:  # if key in cache
             # update value of existing key
             self.cache_data[key] = item
             # update key freq
-            self.freq[key] += 1          
+            self.freq[key] += 1
 
     def get(self, key):
         """get item from cache"""
@@ -54,7 +54,7 @@ class LFUCache(BaseCaching):
         if key is None:
             return None
         if key in self.cache_data:
-           # update key freq
+            # update key freq
             self.freq[key] += 1
 
         return self.cache_data.get(key)

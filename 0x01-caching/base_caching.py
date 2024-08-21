@@ -2,6 +2,7 @@
 """ BaseCaching module
 """
 
+
 class BaseCaching():
     """ BaseCaching defines:
       - constants of your caching system
@@ -24,16 +25,9 @@ class BaseCaching():
     def put(self, key, item):
         """ Add an item in the cache
         """
-        if key is not None and item is not None:
-            self.cache_data[key] = item
-        #raise NotImplementedError("put must be implemented in your cache class")
+        raise NotImplementedError("put must be implemented in your cache class")
 
     def get(self, key):
         """ Get an item by key
         """
-        if key is None:
-            return None
-        if key not in super().cache_data.keys():
-            return None
-        #raise NotImplementedError("get must be implemented in your cache class")
-        return super().cache_data[key]
+        raise NotImplementedError("get must be implemented in your cache class")
