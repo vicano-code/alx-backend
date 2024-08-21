@@ -21,7 +21,6 @@ class MRUCache(BaseCaching):
 
     def put(self, key, item):
         """put item in cache"""
-        print(self.stack)
         # validate input
         if key is None or item is None:
             return
@@ -33,9 +32,10 @@ class MRUCache(BaseCaching):
                 del self.cache_data[self.stack[0]]
                 print("DISCARD: {}".format(self.stack[0]))
                 del self.stack[0]
-            # add item to cache and stack
+            # add item to cache
             self.cache_data[key] = item
-            self.stack.append(key)
+            # insert most recent item to top of stack
+            self.stack.insert(0, key)
         else:  # if key in cache
             # update value of existing key
             self.cache_data[key] = item
@@ -52,5 +52,5 @@ class MRUCache(BaseCaching):
             # update key position in stack
             self.stack.remove(key)
             self.stack.insert(0, key)
-        print(self.stack)
+
         return self.cache_data.get(key)
