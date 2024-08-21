@@ -14,15 +14,21 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """put data in cache"""
-        if key or item is not None:
-            self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            firstKey = next(iter(self.cache_data))
-            print("DISCARD: {}".format(firstKey))
-            del self.cache_data[firstKey]
+        # validate input
+        if key is None or item is None:
+            return
+        # check if cache limit is reached
+        if self.get(key) is None:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                firstKey = next(iter(self.cache_data))
+                print("DISCARD: {}".format(firstKey))
+                del self.cache_data[firstKey]
+
+        self.cache_data[key] = item
 
     def get(self, key):
         """get cache data"""
+        # validate input
         if key is None:
             return None
 
