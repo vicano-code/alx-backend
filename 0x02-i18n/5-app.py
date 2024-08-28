@@ -24,12 +24,14 @@ app = Flask(__name__)
 babel = Babel(app)
 app.config.from_object(Config)
 
+
 @app.before_request
 def before_request(login_as: int = None):
     """function to execute before making request"""
     user: dict = get_user()
     print(user)
     g.user = user
+
 
 def get_user() -> Union[dict, None]:
     """returns a dictionary of the user obj props or None"""
@@ -43,6 +45,7 @@ def get_user() -> Union[dict, None]:
 
     return user[login_user]
 
+
 @babel.localeselector
 def get_locale():
     """Get locale from request"""
@@ -52,11 +55,12 @@ def get_locale():
         return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     """render index.html template"""
     return render_template('5-index.html')
- 
+
 
 if __name__ == "__main__":
     """ Main Function """
