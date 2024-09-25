@@ -15,7 +15,7 @@ function setNewSchool(schoolName, value) {
 async function displaySchoolValue(schoolName) {
   const getAsync = promisify(client.get).bind(client);
   try {
-    const value = await getAsync(schoolName); // Use async/await to get the value
+    const value = await getAsync(schoolName);
     console.log(value); // Log the value retrieved from Redis
   } catch (err) {
     console.log(`Error getting value for ${schoolName}: ${err}`);
