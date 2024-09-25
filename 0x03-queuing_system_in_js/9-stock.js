@@ -44,7 +44,7 @@ async function getCurrentReservedStockById(itemId) {
     return value;
   } catch (err) {
     console.log(`Error getting value for ${itemId}: ${err}`);
-    return null;
+    return 0;
   }
 }
 
@@ -98,3 +98,8 @@ app.get('/reserve_product/:itemId', async (req, res) => {
     itemId: itemId
   });
 })
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running and listening on port ${PORT}`);
+});
